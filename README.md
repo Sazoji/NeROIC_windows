@@ -1,10 +1,11 @@
 # NeROIC: Neural Object Capture and Rendering from Online Image Collections
 ~~This work has been tested on Ubuntu 20.04.~~
 
-This repo is a testing grounds for NeROIC on Windows 11, including dataset creation and modified datasets to be compatible with comparable repositories
+This repo is a testing grounds for NeROIC on Windows 11, including dataset creation and modified datasets to be compatible with comparable repositories.
+
 Discord Contact is in my profile for dataset help -Sazoji
 
-Our project page is https://formyfamily.github.io/NeROIC.
+quick todo: impliment direct colmap(or NeRFjson/LLFF+filename) dataloading, recursive image conversion without glob deletion, better masks, convert my nvdiffrec fork scripts to create datasets from video in a unified manner
 
 ## Quick Start
 * Install required libraries.
