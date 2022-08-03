@@ -1,19 +1,21 @@
 # NeROIC: Neural Object Capture and Rendering from Online Image Collections
+~~This work has been tested on Ubuntu 20.04.~~
 
-This repository is the official implementation of  the NeROIC model from [NeROIC: Neural Object Capture and Rendering from Online Image Collections](https://arxiv.org/abs/2201.02533) by [Zhengfei Kuang](https://zhengfeikuang.com), [Kyle Olszewski](https://kyleolsz.github.io/), [Menglei Chai](https://mlchai.com/), [Zeng Huang](https://zeng.science/), [Panos Achlioptas](https://optas.github.io/), and [Sergey Tulyakov](http://stulyakov.com).
-
-This work has been tested on Ubuntu 20.04. 
+This repo is a testing grounds for NeROIC on Windows 11, including dataset creation and modified datasets to be compatible with comparable repositories
+Discord Contact is in my profile for dataset help -Sazoji
 
 Our project page is https://formyfamily.github.io/NeROIC.
 
 ## Quick Start
 * Install required libraries.
 
-```sh
+Certain repos in this env require building from source with VS!
+```bash
 conda env create -f environment.yaml
 conda activate neroic
-apt-get install graphicsmagick-imagemagick-compat
 ```
+~~apt-get install graphicsmagick-imagemagick-compat~~
+(install imagemagick to PATH for now, to be replaced with imageio)
 
 * Download our example data at [here](https://drive.google.com/drive/folders/1HzxaO9CcQOcUOp32xexVYFtsyKKULR7T?usp=sharing).
 
