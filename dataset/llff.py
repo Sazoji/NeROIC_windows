@@ -36,7 +36,7 @@ def _minify(basedir, factors=[], resolutions=[], have_mask=False):
     if not need_resize_img:
         return
     
-    from shutil import copy
+    from shutil import rmtree, copytree
     from subprocess import check_output
     
     imgdir = os.path.join(basedir, 'images')
@@ -67,34 +67,36 @@ def _minify(basedir, factors=[], resolutions=[], have_mask=False):
             
         print('Resizing images to size:', r)
         
-        os.makedirs(imgdir)
-        check_output('cp {}/* {}'.format(imgdir_orig, imgdir), shell=True)
+        #os.makedirs(imgdir)
+        copytree(os.path.relpath(imgdir_orig), os.path.relpath(imgdir))
         
         # resize images
         ext = imgs[0].split('.')[-1]
-        args = ' '.join(['mogrify', '-resize', resizearg, '-format', 'png', '*.{}'.format(ext)])
+        args = ' '.join(['magick mogrify', '-resize', resizearg, '-format', 'png', '*.{}'.format(ext)])
         print(args)
         os.chdir(imgdir)
         check_output(args, shell=True)
         os.chdir(wd)        
         
         if ext != 'png':
-            check_output('rm {}/*.{}'.format(imgdir, ext), shell=True)
+            for f in glob.glob(os.path.join(imgdir, '*.{}'.format(ext))):
+                os.remove(f)
             print('Removed duplicates')
 
         # resize masks
         if have_mask:
-            os.makedirs(maskdir)
-            check_output('cp {}/* {} -r'.format(maskdir_orig, maskdir), shell=True)
+            #os.makedirs(maskdir)
+            copytree(os.path.relpath(maskdir_orig), os.path.relpath(maskdir))
             mask_ext = masks[0].split('.')[-1]
-            args = ' '.join(['mogrify', '-resize', resizearg, '-format', 'png', '*.{}'.format(mask_ext)])
+            args = ' '.join(['magick mogrify', '-resize', resizearg, '-format', 'png', '*.{}'.format(mask_ext)])
             print(args)
             os.chdir(maskdir)
             check_output(args, shell=True)
             os.chdir(wd)   
 
             if mask_ext != 'png':
-                check_output('rm {}/*.{}'.format(maskdir, mask_ext), shell=True)
+                for f in glob.glob(os.path.join(maskdir, '*.{}'.format(mask_ext))):
+                    os.remove(f)
                 print('Removed duplicates')
 
         print('Done')
